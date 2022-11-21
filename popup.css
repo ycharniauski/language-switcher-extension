@@ -1,0 +1,86 @@
+body {
+  padding: 5px;
+  width: 200px;
+}
+
+body > div {
+  margin-bottom: 10px;
+}
+
+label {
+  display: block;
+  margin: 5px 0;
+}
+
+input {
+  width: 200px;
+  padding: 5px;
+}
+
+#success {
+  background-color: #b8e6bf;
+  border: 1px solid green;
+  color: green;
+  border-radius: 4px;
+  width: 100%;
+  text-align: center;
+  padding: 5px;
+  margin-top: 10px;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+#failed {
+  background-color: pink;
+  border: 1px solid red;
+  color: red;
+  border-radius: 4px;
+  width: 100%;
+  text-align: center;
+  padding: 5px;
+  margin-top: 10px;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+#go-container {
+  margin-top: 10px;
+  text-align: right;
+}
+
+#go {
+  padding: 5px;
+  font-size: 15px;
+}
+
+button  {
+  background-color: rgb(242, 252, 255);
+  border: none;
+  cursor: pointer;
+  min-width: 40px;
+  min-height: 30px;
+  margin: 2px;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: rgb(211, 236, 243);
+}
+
+a {
+  display: inline-block;
+  background-color: rgb(242, 252, 255);
+  cursor: pointer;
+  padding: 4px;
+  margin: 2px; 
+}
+
+a:hover {
+  background-color: rgb(211, 236, 243);
+}
+
+.click-effect {
+  box-shadow: 0 0 0 1px rgba(255,125,0,1),
+            0 0 3px 3px rgba(255,175,0,0.8);
+}
+
