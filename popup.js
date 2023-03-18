@@ -80,7 +80,7 @@ async function getToken() {
 }
 
 function addLanguages() {
-  const langs = ['en', 'ru', 'tr-TR', 'es-EM', 'pt-BR', 'zh-TW', 'zh-CN']
+  const langs = ['en', 'ru', 'tr-TR', 'es-EM', 'pt-BR', 'zh-TW', 'zh-CN', 'ja-JP']
   langs.forEach(lang => {
     const btn = document.getElementById(lang)
     if (btn) {
@@ -160,12 +160,74 @@ function addSettings () {
   })
 }
 
+function addGenCrowdinTasks() {
+  const btn = document.getElementById("gen-crowdin-tasks")
+  btn.addEventListener('click', async () => {
+    clickEffect(btn)
+    const tab = await getCurrentTab()
+    chrome.scripting.executeScript({
+        target: { tabId: tab.id },
+        func: () => {
+          function generateCrowdinTasks() {
+            const langMap = {
+              '25': 'jp',
+              '41': 'ru',
+              '50': 'flag-tr',
+              '55': 'cn',
+              '56': 'flag-tw',
+              '63': 'flag-br',
+              '213': 'es'
+            }
+            const tabs = document.querySelectorAll('.tasks-board__card');
+            const tasks = [];
+          
+            tabs.forEach((t) => {
+              const links = t.querySelectorAll('.project-task-link');
+              links.forEach((link) => {
+                const url = link.getAttribute('href');
+                const name = link.querySelector('.semibold').textContent;
+                const langId = t.getAttribute('data-language-id')
+                tasks.push({
+                  lang: langMap[langId],
+                  name,
+                  url: `https://crowdin.com${url}`,
+                })
+              })
+            })
+          
+            const groupTasks = tasks.reduce((accumulator, task) => {
+              const name = task.name;
+              return {
+                ...accumulator,
+                [name]: [
+                  ...(accumulator[name] || []),
+                  task,
+              ]
+              };
+            }, {});
+          
+            return Object.keys(groupTasks).map((taskName) => {
+              const taskList = groupTasks[taskName];
+              const taskLinks = taskList.map((item) => `:${item.lang}: ${item.url}`)
+              return `Please help translate: ${taskName}\n${taskLinks.join('\n')}`
+            }).join('\n\n\n')
+          }
+          return generateCrowdinTasks()
+        },
+    }, ([{ result }]) => {
+      copyToBuffer(result)
+      alert(`Result copied to buffer:\n\n\n${result}`)
+    });
+  })
+}
+
 async function initPopupWindow() {  
   success.hidden = true;
   failed.hidden = true;
 
   addLanguages()
   addSettings()
+  addGenCrowdinTasks()
 }
 
 initPopupWindow();

@@ -5,7 +5,8 @@
   "permissions": [
 		"cookies",
 		"tabs",
-		"storage"
+		"storage",
+    "scripting"
 	],
   "offline_enabled": true,
   "host_permissions": ["https://*/*", "http://*/*"],
