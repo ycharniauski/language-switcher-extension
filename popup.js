@@ -147,6 +147,7 @@ function addSettings () {
     'dark-theme': '{"settings":{"api:bitfinex_theme_with_mode":"default-theme:dark-mode:default","api:bitfinex_theme":"dark-theme","api:bitfinex_color-saturation-adjustment":100,"api:bitfinex_color-contrast-adjustment":100,"api:bitfinex_color-brightness-adjustment":100}}',
     'light-theme': '{"settings":{"api:bitfinex_theme_with_mode":"default-theme:light-mode:default","api:bitfinex_theme":"light-theme","api:bitfinex_color-saturation-adjustment":100,"api:bitfinex_color-contrast-adjustment":100,"api:bitfinex_color-brightness-adjustment":100}}',
     'colourblind-theme': '{"settings":{"api:bitfinex_theme_with_mode":"colourblind-theme:light-mode:default","api:bitfinex_theme":"light-theme","api:bitfinex_color-saturation-adjustment":100,"api:bitfinex_color-contrast-adjustment":100,"api:bitfinex_color-brightness-adjustment":100}}',
+    'rest-borrow-skip-pos-warn': '{"settings":{"api:bitfinex_borrow_skip_positions_warning_dialog":false}}',
   }
   
   const keys = Object.keys(settings)
